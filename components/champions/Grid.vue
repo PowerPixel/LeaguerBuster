@@ -1,17 +1,12 @@
 <script setup lang="ts">
-    const props = defineProps({
-        champions_data: Object
-    })
-
-    onMounted(() => {
-        console.log(props.champions_data)
-    })
+    import type { ChampionsData } from "@/composables/states";
+    const props = defineProps<{championsData: ChampionsData}>()
 </script>
 
 <template>
-    <div>
-        {{ champions_data }}
-        <span>This is my test span</span>
+    <div class="flex gap-x-9 gap-y-8 flex-row align justify-evenly flex-wrap items-start">
+        <template v-for="champion in championsData.data">
+            <ChampionCard :championData="champion" />
+        </template>
     </div>
 </template>
-
